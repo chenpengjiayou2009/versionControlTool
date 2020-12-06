@@ -2,9 +2,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 
 public class Tree {
-    private String type;
-    private String name;
-    private String content = "";
+    private String type; // type is always tree
+    private String name; // sha-1 code for tree object
+    private String content = ""; // content of tree, such as "10644 blob sha1-code a.txt..."
 
     public Tree(String filename) throws Exception {
         File file = new File(filename);
