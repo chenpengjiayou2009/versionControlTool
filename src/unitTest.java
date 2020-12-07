@@ -32,7 +32,7 @@ public class unitTest {
     }
 
     public static void main(String[] args){
-        String filename = "D:/课件/java/课程项目";
+        String filename = ".";
         testName(filename);
         testContent(filename);
 

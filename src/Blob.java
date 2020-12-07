@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class Blob {
-    private String type; // type is always bolb
+    private String type; // type is always blob
     private String name; // hash code of the content
     FileInputStream input;
     public Blob(String filename) throws Exception {

@@ -42,7 +42,11 @@ public class SHA1CheckSum {
     public String getSha1(){
         outFile = "";
         int n = sha1.length;
-        for(int i = 0;i<n;i++){
+        for(int i = 0;i< n;i++){
+            if((int) sha1[i] < 16){
+                outFile = outFile + "0" + Integer.toString(sha1[i]&0xFF, 16); // 如果不满2位字符，则将其前面补一个"0"
+                continue;
+            }
             outFile += Integer.toString(sha1[i]&0xFF, 16);
         }
         return outFile;
