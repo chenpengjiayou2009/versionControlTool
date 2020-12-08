@@ -15,15 +15,15 @@ public class Tree extends KeyValueObject {
                 content = content + "\n" + "100644 tree " + new Tree(f).getKey() + " " + f.getName();
             }
         }
-        File tree = new File("temp");
-        PrintWriter printWriter = new PrintWriter(tree);
-        printWriter.print(content);
-        printWriter.close();
-        genKey(tree);
-        tree.delete();
-
+        genKey(content);
     }
 
+    @Override
+    public void write() throws Exception {
+        PrintWriter p = new PrintWriter(this.key);
+        p.print(content);
+        p.close();
+    }
 
     public String getKey() {
         return this.key;

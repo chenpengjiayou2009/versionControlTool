@@ -14,6 +14,10 @@ public class SHA1CheckSum {
         this.sha1 = Sha1Checksum(input);
     }
 
+    public SHA1CheckSum(String content)throws Exception{
+        this.sha1 = Sha1Checksum(content);
+    }
+
 
 
     public static byte[] Sha1Checksum(InputStream is) throws Exception{
@@ -29,6 +33,14 @@ public class SHA1CheckSum {
         is.close();
         return complete.digest();
     }
+
+    public static byte[] Sha1Checksum(String content) throws Exception{
+        MessageDigest complete = MessageDigest.getInstance("SHA-1");
+        complete.update(content.getBytes());
+        return complete.digest();
+    }
+
+
 
     public String getSha1(){
         outFile = "";
