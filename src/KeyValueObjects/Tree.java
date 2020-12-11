@@ -3,8 +3,7 @@ package KeyValueObjects;
 import java.io.File;
 import java.io.PrintWriter;
 
-public class Tree extends KeyValueObject {
-    private String content = ""; // content of tree, such as "10644 blob sha1-code a.txt..."
+public class Tree extends KeyValueObject {// content of tree, such as "10644 blob sha1-code a.txt..."
 
     public Tree(File file) throws Exception {
         for(File f:file.listFiles()){
@@ -16,14 +15,10 @@ public class Tree extends KeyValueObject {
             }
         }
         genKey(content);
+        this.path += "objects/";
     }
 
-    @Override
-    public void write() throws Exception {
-        PrintWriter p = new PrintWriter(this.key);
-        p.print(content);
-        p.close();
-    }
+
 
     public String getKey() {
         return this.key;

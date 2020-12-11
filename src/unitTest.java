@@ -1,7 +1,11 @@
-import KeyValueObjects.Blob;
-import KeyValueObjects.Tree;
+/*
+    unitTest will generate test dir imitating ./git in the present directory
+ */
+
+import KeyValueObjects.*;
 
 import java.io.File;
+import java.io.PrintWriter;
 
 public class unitTest {
     public static void testName(String filename){
@@ -56,7 +60,7 @@ public class unitTest {
         }
     }
 
-    public static void testContent(File file){
+    public static void testTree(File file){
         try{
             if(file.isDirectory()){
                 System.out.println(new Tree(file).getContent());
@@ -70,6 +74,30 @@ public class unitTest {
         }
     }
 
+    public static void testBranch(String branch) throws Exception{
+        Branch b = new Branch(branch,"");
+        b.write(); // generate a branch
+    }
+
+    public static void testHead(String branch) throws Exception{
+        Head head = new Head(branch);
+        head.write(); // generate HEAD file
+    }
+
+    public static void testCommit(String path) throws Exception{
+        Commit commit1 = new Commit("chenpeng","chenpeng","first commit");
+        System.out.println(commit1.getContent());
+        commit1.write();
+
+        PrintWriter printWriter = new PrintWriter(path+"/a.txt"); // don't forget /
+        printWriter.print("hello world");
+        printWriter.close();
+        Commit commit2 = new Commit("chenpeng","chenpeng","second commit");
+        System.out.println(commit2.getContent());
+        commit2.write();
+
+    }
+
     public static File genFile(){
         File root = new File("root");
         File blob1 = new File(root,"blob1");
@@ -79,9 +107,16 @@ public class unitTest {
     }
 
     public static void main(String[] args){
-        File root = new File(".");
-        testName(root);
-        testContent(root);
+        try {
+            String path = "./test";
+            testBranch("master");
+            testHead("master");
+            testCommit(path);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
 
     }
 }
