@@ -25,7 +25,7 @@ public class Commit extends KeyValueObject{
         this.committer = committer;
         this.comment = comment;
 
-        this.content = "tree " + this.tree + "\nauthor " + this.author + "\ncommitter " + this.committer + "\n\n" + this.comment;
+        this.content = "tree " + this.tree + "\nparent" + this.parent + "\nauthor " + this.author + "\ncommitter " + this.committer + "\n\n" + this.comment;
         genKey(content); // generate new hash code based on the content
         System.out.println("now the hashcode is "+ this.key);
         PrintWriter printWriter = new PrintWriter(branch);
