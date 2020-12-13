@@ -6,9 +6,14 @@ public class Blob extends KeyValueObject {
     public Blob(File file) throws Exception {
         genKey(file);
         this.type = "blob";
+        this.path += "objects/";
 
     } // a blob object generated from given file name
 
+    @Override
+    public void write() throws Exception {
+        writeFile();
+    }
 
     public String getType(){
         return type;

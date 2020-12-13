@@ -2,14 +2,14 @@ package KeyValueObjects;
 
 import KeyValueObjects.SHA1CheckSum;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 public abstract class KeyValueObject {
     protected String type;
     protected String key;
     protected File file;
+    protected String content;
+    protected String path = "./test/";
     protected  KeyValueObject(){
 
     }
@@ -25,7 +25,7 @@ public abstract class KeyValueObject {
     }
 
 
-    public void write() throws Exception{
+    public void writeFile() throws Exception{
         FileInputStream fileInputStream = new FileInputStream(this.file);
         FileOutputStream output = new FileOutputStream(this.key);
         byte[] buffer = new byte[1024];
@@ -39,4 +39,16 @@ public abstract class KeyValueObject {
         fileInputStream.close();
         output.close();
     };
+
+    public void write() throws Exception{
+        File f = new File(path);
+        if(!f.exists())f.mkdirs();
+        PrintWriter p = new PrintWriter(this.path + this.key);
+        p.print(this.content);
+        p.close();
+    }
+
+    public String getContent() {
+        return content;
+    }
 }
