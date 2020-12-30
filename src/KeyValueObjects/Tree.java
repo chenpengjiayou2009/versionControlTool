@@ -1,6 +1,7 @@
 package KeyValueObjects;
 
 import java.io.File;
+import java.io.InputStream;
 import java.io.PrintWriter;
 
 public class Tree extends KeyValueObject {// content of tree, such as "10644 blob sha1-code a.txt..."
@@ -16,6 +17,11 @@ public class Tree extends KeyValueObject {// content of tree, such as "10644 blo
         }
         genKey(content);
         this.path += "objects/";
+        this.file = file;
+    }
+
+    public Tree(InputStream is) throws Exception{
+        genKey(content);
     }
 
 
@@ -30,6 +36,6 @@ public class Tree extends KeyValueObject {// content of tree, such as "10644 blo
 
     @Override
     public String toString() {
-        return "100644 tree " + this.key;
+        return "100644 tree " + this.key + " " + this.file.getName();
     }
 }

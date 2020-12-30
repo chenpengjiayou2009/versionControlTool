@@ -9,17 +9,17 @@ public abstract class KeyValueObject {
     protected String key;
     protected File file;
     protected String content;
-    protected String path = "./test/";
+    protected String path = System.getProperty("user.dir") + "/.git/";
     protected  KeyValueObject(){
 
     }
-    protected void genKey(File file) throws Exception{
+    public void genKey(File file) throws Exception{
         SHA1CheckSum s = new SHA1CheckSum(file);
         this.key = s.getSha1();
         this.file = file;
     }
 
-    protected void genKey(String content) throws Exception{
+    public void genKey(String content) throws Exception{
         SHA1CheckSum s = new SHA1CheckSum(content);
         this.key = s.getSha1();
     }
@@ -27,7 +27,7 @@ public abstract class KeyValueObject {
 
     public void writeFile() throws Exception{
         FileInputStream fileInputStream = new FileInputStream(this.file);
-        FileOutputStream output = new FileOutputStream(this.key);
+        FileOutputStream output = new FileOutputStream(this.path + this.key);
         byte[] buffer = new byte[1024];
         int numRead = 0;
         do {
@@ -41,6 +41,7 @@ public abstract class KeyValueObject {
     };
 
     public void write() throws Exception{
+        System.out.println("key is " + this.key);
         File f = new File(path);
         if(!f.exists())f.mkdirs();
         PrintWriter p = new PrintWriter(this.path + this.key);
