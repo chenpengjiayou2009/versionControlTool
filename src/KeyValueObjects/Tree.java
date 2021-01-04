@@ -8,20 +8,26 @@ public class Tree extends KeyValueObject {// content of tree, such as "10644 blo
 
     public Tree(File file) throws Exception {
         for(File f:file.listFiles()){
+            String append;
             if(f.isFile()){
-                content = content + "\n" + "100644 blob " + new Blob(f).getKey() + " " + f.getName();
+                Blob blob = new Blob(f);
+                blob.write();
+                content.append("100644 blob " + blob.getKey() + " " + f.getName() + "\n");
             }
             else if(f.isDirectory()){
-                content = content + "\n" + "100644 tree " + new Tree(f).getKey() + " " + f.getName();
+                content.append("100644 tree " + new Tree(f).getKey() + " " + f.getName() + "\n");
             }
         }
-        genKey(content);
+        genKey(content.toString());
         this.path += "objects/";
         this.file = file;
     }
 
-    public Tree(InputStream is) throws Exception{
-        genKey(content);
+    public Tree(StringBuilder index) throws Exception{
+        this.content = index;
+        System.out.println("content is " + this.content.toString());
+        genKey(content.toString());
+        this.path += "objects/";
     }
 
 
@@ -31,7 +37,7 @@ public class Tree extends KeyValueObject {// content of tree, such as "10644 blo
     }
 
     public String getContent(){
-        return this.content;
+        return this.content.toString();
     }
 
     @Override

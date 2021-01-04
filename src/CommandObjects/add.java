@@ -11,7 +11,7 @@ public class add extends Command{
     public void add(String fileName) throws Exception {
         File f = new File(workingDir + fileName);
         if(!f.exists()) {
-            System.out.println("wrong file name");
+            System.out.println("file not exists");
             return;
         }
         String append;
@@ -23,10 +23,10 @@ public class add extends Command{
         }
         else{
             Blob blob = new Blob(f);
-            append = "10064 blob " + new SHA1CheckSum(f).getSha1() + " " + f.getName();
+            append = blob.toString();
             blob.write();
         }
-        FileWriter fw = new FileWriter(path+"index", true);
+        FileWriter fw = new FileWriter(this.index, true);
         PrintWriter pw = new PrintWriter(fw);
         pw.println(append);
         fw.close();

@@ -4,14 +4,15 @@ import KeyValueObjects.Commit;
 import org.apache.commons.cli.*;
 
 import java.io.File;
+import java.io.PrintWriter;
 
 public class commit extends Command{
     public void commit(String author, String committer, String comment) throws Exception{
-        File index = new File(path + "index");
-        Commit c = new Commit(author, committer, comment, index);
-
-        c.genKey(index);
+        Commit c = new Commit(author, committer, comment, this.index);
         c.write();
+        PrintWriter p = new PrintWriter(this.index);
+        p.print("");
+        p.close(); // clear index
     }
     public static void main(String[] args){
 
@@ -19,9 +20,13 @@ public class commit extends Command{
             Options options = new Options();
             CommandLineParser parser = new DefaultParser();
             options.addOption(new Option("m",true,"description for command"));
+            options.addOption(new Option("a",true,"author"));
+            options.addOption(new Option("c",true,"committer"));
             CommandLine cmd = parser.parse( options, args);
             String comment = cmd.getOptionValue("m");
-            new commit().commit(args[0], args[1], comment);
+            String author = cmd.getOptionValue("a");
+            String committer = cmd.getOptionValue("c");
+            new commit().commit(author, committer, comment);
         }
         catch (Exception e){
             e.printStackTrace();

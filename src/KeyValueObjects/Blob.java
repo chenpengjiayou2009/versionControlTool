@@ -25,6 +25,6 @@ public class Blob extends KeyValueObject {
 
     @Override
     public String toString() {
-        return "100644 blob " + key;
+        return "100644 blob " + key + " " + this.file.getName();
     }
 }

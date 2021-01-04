@@ -1,6 +1,6 @@
 package KeyValueObjects;
 
-import KeyValueObjects.SHA1CheckSum;
+import util.Copy;
 
 import java.io.*;
 
@@ -8,7 +8,7 @@ public abstract class KeyValueObject {
     protected String type;
     protected String key;
     protected File file;
-    protected String content;
+    protected StringBuilder content = new StringBuilder();
     protected String path = System.getProperty("user.dir") + "/.git/";
     protected  KeyValueObject(){
 
@@ -26,22 +26,12 @@ public abstract class KeyValueObject {
 
 
     public void writeFile() throws Exception{
-        FileInputStream fileInputStream = new FileInputStream(this.file);
-        FileOutputStream output = new FileOutputStream(this.path + this.key);
-        byte[] buffer = new byte[1024];
-        int numRead = 0;
-        do {
-            numRead = fileInputStream.read(buffer);
-            if(numRead > 0){
-                output.write(buffer);
-            }
-        }while(numRead!=-1);
-        fileInputStream.close();
-        output.close();
+        File source = this.file;
+        File des = new File(this.path + this.key);
+        Copy.copy(source,des);
     };
 
     public void write() throws Exception{
-        System.out.println("key is " + this.key);
         File f = new File(path);
         if(!f.exists())f.mkdirs();
         PrintWriter p = new PrintWriter(this.path + this.key);
@@ -50,6 +40,6 @@ public abstract class KeyValueObject {
     }
 
     public String getContent() {
-        return content;
+        return content.toString();
     }
 }
