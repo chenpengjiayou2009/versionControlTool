@@ -1,0 +1,6 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\A - Sync\\OneDrive - pku.edu.cn\\G\\07_versionControlTool\\lib\\commons-cli-1.4.jar"
+    ]
+}

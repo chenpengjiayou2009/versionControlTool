@@ -14,7 +14,7 @@ public class reset extends Command{
     private String parent = Read.readParentFromCommit(commit);
 
     // reset --soft
-    private void resetSoft() throws Exception{
+    public void resetSoft() throws Exception{
 //        PrintWriter out = new PrintWriter(this.branch);
 //        if(this.parent.equals("")){
 //            System.out.print("can't reset back");
@@ -28,7 +28,7 @@ public class reset extends Command{
     }
 
     // reset --mixed
-    private void resetMixed() throws Exception{
+    public void resetMixed() throws Exception{
         resetSoft();
         File index = new File(wrapGit("index"));
         File tree = new File(wrapObjects(Read.readTreeFromCommit(this.commit)));
@@ -36,7 +36,7 @@ public class reset extends Command{
     }
 
     // reset --hard
-    protected void resetHard() throws Exception{
+    public void resetHard() throws Exception{
         resetMixed();
         System.out.println("commit is " + this.commit.getName());
         File tree = new File(wrapObjects(Read.readTreeFromCommit(this.commit)));
