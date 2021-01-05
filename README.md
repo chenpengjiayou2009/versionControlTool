@@ -8,13 +8,19 @@
 
 java init
 
+实现细节
+
+创建 .git 文件夹
+
+创建
+
 #### 2 添加文件到暂存区
 
-java add <filename>
+java add  \<filename>
 
 #### 3 提交暂存区生成提交记录
 
-java commit -m <message> -a <author> -c <committer>
+java commit -m \<message> -a \<author> -c \<committer>
 
 #### 4 回滚
 
@@ -22,7 +28,7 @@ java reset -s(--soft) -m(--mixed) -h(--hard)
 
 #### 5 创建分支
 
-java branch <branchname>
+java branch \<branchname>
 
 #### 6 查看分支
 
@@ -30,7 +36,7 @@ java branch
 
 #### 7 切换分支
 
-java checkout <branchname>
+java checkout \<branchname>
 
 #### 8 查看提交记录
 
