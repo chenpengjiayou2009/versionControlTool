@@ -40,13 +40,13 @@ public class Commit extends KeyValueObject{
     private void genParent() throws Exception{
         Scanner scanner = new Scanner(new File(this.path + "HEAD")); // check out where head points because commit will update on the basis of the branch it is on
         this.branch =  this.path + scanner.next();  // get branch address such as ref/heads/master
-        System.out.println("branch is "+ this.branch);
+//        System.out.println("branch is "+ this.branch);
         scanner.close();
         scanner = new Scanner(new File(branch)); // read last commit hash code from the branch file
         if(scanner.hasNext()) this.parent = scanner.next();
         else this.parent = ""; // the parent of the first commit is empty
         scanner.close(); // don't forget to close
-        System.out.println("parent is " + this.parent); // print it to verify the result
+//        System.out.println("parent is " + this.parent); // print it to verify the result
     }
 
 }

@@ -10,7 +10,7 @@ public class Read {
             Scanner in = new Scanner(head);
             String branch = in.next();
             in.close();
-            System.out.println("branch is " + branch);
+//            System.out.println("branch is " + branch);
             return branch;
         }
         catch (Exception e){
@@ -24,7 +24,7 @@ public class Read {
             Scanner in = new Scanner(branch);
             String commit = in.nextLine();
             in.close();
-            System.out.println("commit is "+commit);
+//            System.out.println("commit is "+commit);
             return commit;
         }
         catch (Exception e){
@@ -35,7 +35,7 @@ public class Read {
 
     public static String readParentFromCommit(File commit){
         try{
-            System.out.println("commit is " + commit.getAbsolutePath());
+//            System.out.println("commit is " + commit.getAbsolutePath());
             Scanner in = new Scanner(commit);
             String line1 = in.nextLine();
             String line2 = in.nextLine();

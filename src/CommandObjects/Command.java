@@ -13,7 +13,7 @@ public class Command {
         path = workingDir + ".git/";
         index = new File(path + "index");
         head = new File(path + "HEAD");
-        System.out.println("Working Directory = " + workingDir);
+//        System.out.println("Working Directory = " + workingDir);
     }
 
     protected String wrapGit(String s){

@@ -6,8 +6,19 @@ import java.io.File;
 
 public class log extends Command{
     File currentBranch = new File(path + Read.readBranchFromHead(this.head));
-    File currentCommit = new File(wrapObjects(Read.readCommitFromBranch(currentBranch)));
-    public static void log(){
-        return;
+    String currentCommit = Read.readCommitFromBranch(currentBranch);
+    String parent = Read.readParentFromCommit(new File(wrapObjects(currentCommit)));
+    StringBuilder res = new StringBuilder(currentCommit);
+    public void log(){
+        while(!parent.equals("")){
+            res.append("\n");
+            res.append(parent);
+            parent = Read.readParentFromCommit(new File(wrapObjects(parent)));
+        }
+        System.out.println(res);
+    }
+
+    public static void main(String[] args){
+        new log().log();
     }
 }

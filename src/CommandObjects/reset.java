@@ -36,9 +36,11 @@ public class reset extends Command{
     }
 
     // reset --hard
-    private void resetHard() throws Exception{
+    protected void resetHard() throws Exception{
         resetMixed();
+        System.out.println("commit is " + this.commit.getName());
         File tree = new File(wrapObjects(Read.readTreeFromCommit(this.commit)));
+        System.out.println("tree is " + tree.getName());
         Copy.copyTree(tree,new File(workingDir));
     }
 
