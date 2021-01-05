@@ -3,10 +3,6 @@ import KeyValueObjects.*;
 import org.apache.commons.cli.*;
 import java.util.*;
 
-// 把CommandObjects包中的类的main函数全部拿到一个在根目录（versionControlTool) 下面的一个新类中，
-// 函数名可以和原来的类同名，参数要注意重新写，比如add main 函数中的参数是String[] args，
-// 但是新类中的add 函数需要用 String fileName做参数，然后新类 中的main函数要根据args参数判断调用哪个命令
-
 public class Git {
 
     public static void main(String[] args) {
