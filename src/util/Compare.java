@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Compare{
     public static void compareFile(File f1, File f2) throws Exception{
-        System.out.println(f2.getAbsolutePath());
+//        System.out.println(f2.getAbsolutePath());
         Scanner input1 = new Scanner(f1);
         Scanner input2 = new Scanner(f2);
         StringBuilder res = new StringBuilder();

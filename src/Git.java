@@ -6,25 +6,36 @@ public class Git {
 
     public static void main(String[] args) {
         try {
-            switch(args[0]) {
-                case "add":
-                    add(args[1]);
-                case "branch":
-                    branch(args[1]);
-                case "checkout":
-                    checkout(args[1]);
-                case "commit":
-                    String[] newArgs1 = Arrays.copyOfRange(args, 1, args.length);
-                    commit(newArgs1);
-                case "init":
-                    init();
-                case "log":
-                    log();
-                case "reset":
-                    String[] newArgs2 = Arrays.copyOfRange(args, 1, args.length);
-                    commit(newArgs2);
-                default:
-                    throw new IllegalArgumentException("Illeagal Command");
+            String cmd = args[0];
+            if(cmd.equals("add")){
+                add(args[1]);
+            }
+            else if(cmd.equals("branch")){
+                if(args.length==1) {
+                    branch(null);
+                    return;
+                }
+                branch(args[1]);
+            }
+            else if(cmd.equals("checkout")){
+                checkout(args[1]);
+            }
+            else if(cmd.equals("commit")) {
+                String[] newArgs1 = Arrays.copyOfRange(args, 1, args.length);
+                commit(newArgs1);
+            }
+            else if(cmd.equals("init")){
+                init();
+            }
+            else if(cmd.equals("log")){
+                log();
+            }
+            else if(cmd.equals("reset")){
+                String[] newArgs2 = Arrays.copyOfRange(args, 1, args.length);
+                reset(newArgs2);
+            }
+            else if(cmd.equals("diff")){
+                diff();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -98,5 +109,9 @@ public class Git {
         } else {
             new reset().resetMixed();
         }
+    }
+
+    public static void diff() throws Exception{
+        new diff().diff();
     }
 }

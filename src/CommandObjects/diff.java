@@ -15,7 +15,7 @@ public class diff extends Command{
             String hashcode = words[2];
             String fileName = words[3];
             if(type.equals("blob")){
-                System.out.println("Now compare " + new File(wrapObjects(hashcode)).getAbsolutePath()+ new File(workingDir,fileName).getAbsolutePath());
+//                System.out.println("Now compare " + new File(wrapObjects(hashcode)).getAbsolutePath()+ new File(workingDir,fileName).getAbsolutePath());
                 compareFile(new File(workingDir,fileName),new File(wrapObjects(hashcode)));
             }
             else if(type.equals("tree")){
