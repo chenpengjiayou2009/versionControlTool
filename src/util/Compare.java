@@ -24,6 +24,9 @@ public class Compare{
                 if(!input2.hasNextLine()) break;
                 if(++count>100) break;
             }
+//            System.out.println(content1.toString());
+//            System.out.println(content2.toString());
+//            System.out.println("-------");
             res.append(minDistance(content1,content2));
         }
         ArrayList<String> content1 = new ArrayList<>();
@@ -34,6 +37,8 @@ public class Compare{
         while (input2.hasNextLine()){
             content2.add(input2.nextLine());
         }
+//        System.out.println(content1.toString());
+//        System.out.println(content2.toString());
         res.append(minDistance(content1,content2));
         input1.close();
         input2.close();
@@ -58,18 +63,18 @@ public class Compare{
             for(int j =1;j<length2+1;j++){
                 dpString[i][j] = dpString[i-1][j] + dpString[i][j-1];
                 int price = 1;
-                if(word1.get(i-1)==word2.get(j-1)){
+                if(word1.get(i-1).equals(word2.get(j-1))){
                     price = 0;
                     dpString[i][j] = dpString[i-1][j-1];
                 }
                 int min = dp[i-1][j-1] +price;
                 if(dp[i-1][j]+1<min){
                     min = dp[i-1][j]+1;
-                    dpString[i][j] = dpString[i-1][j] + "+" + word1.get(i) + "\n";
+                    dpString[i][j] = dpString[i-1][j] + "+" + word1.get(i-1) + "\n";
                 }
                 if(dp[i][j-1]+1<min){
                     min = dp[i][j-1]+1;
-                    dpString[i][j] = dpString[i][j-1] + "-" + word2.get(i) + "\n";
+                    dpString[i][j] = dpString[i][j-1] + "-" + word2.get(j-1) + "\n";
                 }
                 dp[i][j] = min;
             }
@@ -82,4 +87,5 @@ public class Compare{
 //        }
         return dpString[length1][length2];
     }
+
 }

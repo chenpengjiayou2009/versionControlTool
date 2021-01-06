@@ -6,6 +6,10 @@ import KeyValueObjects.Tree;
 import org.apache.commons.cli.Options;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class add extends Command{
     public void add(String fileName) throws Exception {
