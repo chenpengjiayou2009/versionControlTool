@@ -8,9 +8,11 @@ import java.io.File;
 
 public class branch extends Command{
     public void branch(){
+        String currentBranch = Read.readBranchFromHead(this.head);
         File branchDir = new File(wrapGit("refs/heads"));
         StringBuilder res = new StringBuilder();
         for(File f:branchDir.listFiles()){
+            if(f.getName().equals(currentBranch.split("\\/")[2])) res.append("* ");
             res.append(f.getName());
             res.append("\n");
         }

@@ -84,7 +84,7 @@ public class SHA1CheckSum {
         for (int i = 0; i < n; i++) {
             String append = Integer.toString(sha1[i] & 0xFF, 16);
             if (append.length() < 2) {
-                out = out + "0" + append; // 如果不满2位字符，则将其前面补一个"0"
+                out = out + "0" + append; 
             }
             // else if(append.length()>2){
             // System.out.println("now we have more than 2 digits");
