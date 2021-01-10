@@ -47,44 +47,43 @@
 
 ## 2.2 命令行工具
 
+请先编译然后将包含Git.class的文件夹加入CLASSPATH并将Apache-Common-cli.jar加入CLASSPATH
+
 ### 1 初始化
 
-java init
+java Git init
 
 实现细节：1. 创建 .git 文件夹
 
 ### 2 添加文件到暂存区
 
-java add <filename>
+java Git add <filename>
 
 ### 3 提交暂存区生成提交记录
 
-java commit -m <message> -a <author> -c <committer>
+java Git commit -m <message> -a <author> -c <committer>
 
 ### 4 回滚
 
-java reset -s(--soft) -m(--mixed) -h(--hard)
+java Git reset -s(--soft) -m(--mixed) -h(--hard)
 
 ### 5 创建分支
 
-java branch <branchname>
+java Git branch <branchname>
 
 ### 6 查看分支
 
-java branch
+java Git branch
 
 ### 7 切换分支
 
-java checkout <branchname>
+java Git checkout <branchname>
 
-### 8 合并分支
-
-Java merge <branchname>
 
 ### 9 查看提交记录
 
-java log
+java Git log
 
 ### 10 比较版本区别
 
-Java diff
+Java Git diff
