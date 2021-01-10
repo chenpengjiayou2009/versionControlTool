@@ -6,62 +6,85 @@
 
 # **2** 功能实现情况
 
-本版本管理工具实现的功能主要包括GIT核心储存结构与命令行工具两部分。
-
-![img](file:///C:\Users\Lenovo\AppData\Local\Temp\ksohtml35592\wps1.png) 
+本版本管理工具实现的功能主要包括GIT核心储存结构与命令行工具两部分。 
 
 
 
 ## 2.1 GIT核心储存结构
 
-GIT的核心储存结构的Object包括blob,tree,commit三类。
+### **Key-value存储**
 
-其中每一个Object中的value为Object的内容；Key为Object内容的hash。
+1. value：Object的内容
+2. Key：Object内容的hash
 
-![img](file:///C:\Users\Lenovo\AppData\Local\Temp\ksohtml35592\wps2.jpg) 
+### **Object的三种类型**
+
+**1. Blob：文件**
+
+- Blob的Value：文件内容
+- Blob的Key：文件内容的hash值
+
+**2. Tree：文件夹**
+
+- Tree的Value包含以下三个部分：
+  1. 子文件夹和子文件名称；
+     2. 每个子文件Blob key；
+     3. 每个子文件夹tree的key；
+- Tree的Key：Tree的Value的hash值
+
+**3. Commit：提交**
+
+- Commit的Value：
+  1. 项目根目录tree对象的key；
+     2. 前驱commit对象的key；
+     3. 代码author；
+     4. 代码commiter；
+     5. commit时间戳；
+     6. commit备注/注释；
+- Commit的Key：Commit的Value的hash值
 
 
 
 ## 2.2 命令行工具
 
-1 初始化
+### 1 初始化
 
 java init
 
 实现细节：1. 创建 .git 文件夹
 
-2 添加文件到暂存区
+### 2 添加文件到暂存区
 
 java add <filename>
 
-3 提交暂存区生成提交记录
+### 3 提交暂存区生成提交记录
 
 java commit -m <message> -a <author> -c <committer>
 
-4 回滚
+### 4 回滚
 
 java reset -s(--soft) -m(--mixed) -h(--hard)
 
-5 创建分支
+### 5 创建分支
 
 java branch <branchname>
 
-6 查看分支
+### 6 查看分支
 
 java branch
 
-7 切换分支
+### 7 切换分支
 
 java checkout <branchname>
 
-8 合并分支
+### 8 合并分支
 
 Java merge <branchname>
 
-9 查看提交记录
+### 9 查看提交记录
 
 java log
 
-10 比较版本区别
+### 10 比较版本区别
 
 Java diff
